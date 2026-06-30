@@ -1,0 +1,525 @@
+:root {
+  --purple-dark: #0f0720;
+  --purple-mid: #1f0b3b;
+  --magenta-glow: #e02476;
+  --pink-glow: #ff758c;
+  --neon-cyan: #00f0ff;
+  --glass-bg: rgba(31, 11, 59, 0.55);
+  --glass-border: rgba(255, 117, 140, 0.25);
+  --text-primary: #f8f6fc;
+  --text-secondary: #c9bcdc;
+  --font-main: 'Poppins', sans-serif;
+  --font-title: 'Playfair Display', serif;
+  --font-hand: 'Sacramento', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid) 50%, #3a0d42 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Confetti Canvas */
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Balon Terbang */
+.balloon {
+  position: fixed;
+  width: 50px;
+  height: 65px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  z-index: 10;
+  cursor: pointer;
+  animation: floatBalloon linear infinite;
+  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 6px solid currentColor;
+}
+
+.balloon-string {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background: rgba(255,255,255,0.4);
+}
+
+@keyframes floatBalloon {
+  0% { transform: translateY(105vh) rotate(0deg); }
+  50% { transform: translateY(50vh) translateX(15px) rotate(10deg); }
+  100% { transform: translateY(-15vh) translateX(-10px) rotate(-10deg); }
+}
+
+/* Musik Kontroler */
+.music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-border);
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  outline: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+}
+
+.disc {
+  font-size: 1.5rem;
+  animation: spin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.playing .disc {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Overlay Kue Ulang Tahun */
+.cake-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #25123e, #0e051c);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+}
+
+.cake-overlay.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cake-container {
+  text-align: center;
+}
+
+.cake-instruction {
+  font-size: 2.2rem;
+  font-family: var(--font-title);
+  color: var(--pink-glow);
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.cake-instruction-sub {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 50px;
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 8px rgba(255, 117, 140, 0.3); }
+  100% { text-shadow: 0 0 20px rgba(255, 117, 140, 0.8); }
+}
+
+/* Kue CSS */
+.cake {
+  position: relative;
+  width: 250px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.plate {
+  width: 280px;
+  height: 15px;
+  background: var(--text-primary);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.layer {
+  position: absolute;
+  width: 220px;
+  border-radius: 10px 10px 0 0;
+  left: 15px;
+}
+
+.layer-bottom {
+  height: 50px;
+  bottom: 15px;
+  background: #733c94; /* Taro */
+  box-shadow: inset 0 5px 0 #8549aa;
+}
+
+.layer-middle {
+  height: 45px;
+  bottom: 65px;
+  width: 190px;
+  left: 30px;
+  background: #c74c86; /* Strawberry */
+  box-shadow: inset 0 5px 0 #d95e98;
+}
+
+.layer-top {
+  height: 40px;
+  bottom: 110px;
+  width: 160px;
+  left: 45px;
+  background: #f08cb3; /* Light pink cream */
+  box-shadow: inset 0 5px 0 #ffa8cc;
+}
+
+.icing {
+  position: absolute;
+  top: 48px;
+  left: 45px;
+  width: 160px;
+  height: 12px;
+  background: var(--text-primary);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.candle {
+  position: absolute;
+  width: 14px;
+  height: 55px;
+  background: linear-gradient(to right, #00f0ff, #007bff);
+  bottom: 150px;
+  left: 118px;
+  border-radius: 4px;
+}
+
+.flame {
+  position: absolute;
+  width: 18px;
+  height: 26px;
+  background: radial-gradient(ellipse at bottom, #ff9d00, #ff3300 70%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  bottom: 58px;
+  left: -2px;
+  box-shadow: 0 0 15px #ff5100, 0 0 25px #ff9d00;
+  animation: flicker 0.15s ease-in-out infinite alternate;
+  cursor: pointer;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1) rotate(-1deg); }
+  100% { transform: scale(1.08) rotate(1.5deg); }
+}
+
+/* Konten Utama */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+  transition: filter 0.8s ease;
+}
+
+.container.blurred {
+  filter: blur(10px);
+}
+
+h1.title {
+  text-align: center;
+  color: var(--text-primary);
+  font-family: var(--font-title);
+  font-size: 3rem;
+  text-shadow: 0 0 20px rgba(255, 117, 140, 0.4);
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 50px;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Polaroid Stage */
+.photo-stage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  margin-bottom: 40px;
+}
+
+.memory-photo {
+  position: absolute;
+  width: 140px;
+  height: 165px;
+  background: var(--text-primary);
+  padding: 10px 10px 30px 10px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+  cursor: zoom-in;
+}
+
+.memory-photo span {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #1a0a2a;
+  font-family: var(--font-hand);
+}
+
+.memory-photo:hover {
+  transform: scale(1.15) rotate(0deg) !important;
+  z-index: 100;
+  box-shadow: 0 15px 40px rgba(255, 117, 140, 0.35);
+  animation-play-state: paused;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+}
+
+/* Polaroid Positions */
+.p1 { top: 10px;  left: 5%;   --rot: -8deg; animation-delay: 0s; }
+.p2 { top: 30px;  left: 30%;  --rot: 5deg;   animation-delay: 0.8s; width: 155px; height: 185px; }
+.p2 img { height: 130px; }
+.p3 { top: 15px;  right: 8%;  --rot: -5deg;  animation-delay: 1.6s; }
+.p4 { top: 220px; left: 2%;   --rot: 8deg;   animation-delay: 0.4s; }
+.p5 { top: 240px; left: 54%;  --rot: -6deg;  animation-delay: 1.2s; width: 160px; height: 190px; }
+.p5 img { height: 135px; }
+.p6 { top: 210px; right: 4%;  --rot: 10deg;  animation-delay: 2.2s; }
+.p7 { top: 320px; left: 26%;  --rot: -4deg;  animation-delay: 1.4s; }
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 20, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 30px;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 6px;
+  box-shadow: 0 0 40px rgba(255, 117, 140, 0.4);
+  border: 8px solid var(--text-primary);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Surat Cinta */
+.letter {
+  position: relative;
+  z-index: 3;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 50px 45px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  line-height: 1.9;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  animation: borderGlow 4s infinite alternate;
+}
+
+.letter::before {
+  content: "✉️";
+  display: block;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: floatHeart 2.5s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes borderGlow {
+  0% { border-color: rgba(255, 117, 140, 0.25); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 117, 140, 0.1); }
+  100% { border-color: rgba(0, 240, 255, 0.35); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.2); }
+}
+
+.letter h2 {
+  text-align: center;
+  color: var(--text-primary);
+  font-family: var(--font-title);
+  margin-top: 0;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+.letter p {
+  margin: 0 0 20px;
+}
+
+.signature {
+  text-align: right;
+  font-weight: 600;
+  color: var(--pink-glow);
+  text-shadow: 0 0 10px rgba(255, 117, 140, 0.4);
+  font-size: 1.25rem;
+  margin-top: 40px;
+}
+
+/* Side ML Heroes */
+.hero-side {
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  max-height: 75vh;
+  width: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 0 25px rgba(255, 117, 140, 0.25));
+  animation: heroFloat 5s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+.hero-left {
+  left: -40px;
+}
+
+.hero-right {
+  right: -40px;
+  animation-delay: 1.5s;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Responsivitas */
+@media (max-width: 1200px) {
+  .hero-side {
+    max-height: 50vh;
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-side {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    margin: 30px auto;
+    padding: 15px;
+  }
+  
+  h1.title {
+    font-size: 2.2rem;
+  }
+  
+  .photo-stage {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  
+  .memory-photo {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: rotate(var(--rot)) !important;
+  }
+  
+  .memory-photo:hover {
+    transform: scale(1.08) rotate(0deg) !important;
+  }
+  
+  .letter {
+    padding: 35px 25px;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun, Viola! 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Sacramento&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Musik Kontroler -->
+<button class="music-btn" id="musicBtn" aria-label="Kontrol Musik">
+  <div class="disc" id="musicDisc">🎵</div>
+</button>
+
+<!-- Overlay Lilin & Kue Ulang Tahun -->
+<div class="cake-overlay" id="cakeOverlay">
+  <div class="cake-container">
+    <h2 class="cake-instruction">Tiup Lilinnya & Make a Wish! 🕯️✨</h2>
+    <p class="cake-instruction-sub">Klik api lilin untuk meniup dan membuka kejutan</p>
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="layer layer-bottom"></div>
+      <div class="layer layer-middle"></div>
+      <div class="layer layer-top"></div>
+      <div class="icing"></div>
+      <div class="candle" id="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<img src="assets/hero-kiri.png" alt="Hero kesukaan Viola" class="hero-side hero-left">
+<img src="assets/hero-kanan.png" alt="Hero kesukaan Viola" class="hero-side hero-right">
+
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<div class="container blurred" id="mainContainer">
+  <h1 class="title">Selamat Ulang Tahun, Violaaa! 🎂🎉</h1>
+  <p class="subtitle">Setiap kenangan denganmu adalah hadiah tersendiri ✨</p>
+
+  <div class="photo-stage" id="photoStage">
+    <div class="memory-photo p1">
+      <img src="assets/foto1.jpg" alt="Kenangan 1">
+      <span>Memory 1</span>
+    </div>
+    <div class="memory-photo p2">
+      <img src="assets/foto2.jpg" alt="Kenangan 2">
+      <span>Memory 2</span>
+    </div>
+    <div class="memory-photo p3">
+      <img src="assets/foto3.jpg" alt="Kenangan 3">
+      <span>Memory 3</span>
+    </div>
+    <div class="memory-photo p4">
+      <img src="assets/foto4.jpg" alt="Kenangan 4">
+      <span>Memory 4</span>
+    </div>
+    <div class="memory-photo p5">
+      <img src="assets/foto5.jpg" alt="Kenangan 5">
+      <span>Memory 5</span>
+    </div>
+    <div class="memory-photo p6">
+      <img src="assets/foto6.jpg" alt="Kenangan 6">
+      <span>Memory 6</span>
+    </div>
+    <div class="memory-photo p7">
+      <img src="assets/foto7.jpg" alt="Kenangan 7">
+      <span>Memory 7</span>
+    </div>
+  </div>
+
+  <div class="letter">
+    <h2>HALOOOOOO OLLAAA,</h2>
+    <p>selamat ulang tahun yaa, semoga di umur yang baru ini semua hal baik makin sering datang ke kamu. walaupun kita baru kenal sekitar sebulan dan awalnya cuma ketemu dari main game</p>
+    <p>seneng banget bisa jadi temen mabar kamu. makasih udah bikin suasana jadi seru dan asik.</p>
+    <p>semoga apa pun yang lagi kamu usahain bisa berjalan lancar, sehat terus, bahagia terus, dan semoga hari ini dipenuhi banyak senyum.  </p>
+    <p>semoga nanti kita masih sering mabar, saling isengin, dan bikin banyak kenangan lucu lagi. sekali lagi, selamat ulang tahun, semoga harimu menyenangkan 🎉 🎉</p>
+    <p class="signature">—THEOO, KING OF THE EXP LANE</p>
+  </div>
+
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="assets/lagu.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
