@@ -21,11 +21,18 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-main);
-  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid) 50%, #3a0d42 100%);
-  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
   position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid) 50%, #3a0d42 100%);
+  z-index: -10;
+  pointer-events: none;
 }
 
 /* Confetti Canvas */
@@ -483,14 +490,15 @@ h1.title {
 
 @media (max-width: 900px) {
   .hero-side {
-    max-height: 35vh;
-    opacity: 0.4;
+    max-height: 25vh;
+    opacity: 0.5;
+    z-index: 10;
   }
   .hero-left {
-    left: -50px;
+    left: -20px;
   }
   .hero-right {
-    right: -50px;
+    right: -20px;
   }
 }
 
